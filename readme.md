@@ -55,7 +55,7 @@ The data comes from the [Kaggle](https://www.kaggle.com/datasets/fmendes/fmendes
 
 ## Running the Application (Streamlit Community Cloud)
 
-- The app has been deployed using Streamlit Community Cloud: [Streamlit App]()
+- The app has been deployed using Streamlit Community Cloud: [Streamlit Calories App](https://caloriesapp.streamlit.app/)
 
 ## Analysis Steps
 
