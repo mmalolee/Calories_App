@@ -114,6 +114,8 @@ The data comes from the [Kaggle](https://www.kaggle.com/datasets/fmendes/fmendes
 - A simple user interface was created to enter data.
 - Input validation was added to prevent errors or negative predictions.
 
+### For more details click [here](cals.ipynb).
+
 ## Conclusions
 
 - Workout duration had the greatest impact on calories burned.
