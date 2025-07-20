@@ -2,9 +2,9 @@
 
 ## Problem Description
 
-The goal of this project is to create and train a machine learning model to estimate the number of calories burned during running based on a user's physiological data. The final model is implemented in a web application built using **Streamlit**, allowing users to estimate burned calories based on:
+The goal of this project is to create and train a machine learning model to estimate the number of calories burned during running based on a user's physiological data. The trained model is integrated into a web application built using **Streamlit**, allowing users to estimate burned calories based on:
 
-- predicted running duration (in minutes),
+- running duration (in minutes),
 - heart rate (beats per minute),
 - body temperature (°C),
 - and gender.
@@ -27,6 +27,9 @@ The data comes from the [Kaggle](https://www.kaggle.com/datasets/fmendes/fmendes
 ## Project Structure
 
 - calories_app_project
+    - images
+        - first_look.png
+        - predicted.png
     - models
         - lm_females.pkl
         - lm_males.pkl
@@ -45,13 +48,12 @@ The data comes from the [Kaggle](https://www.kaggle.com/datasets/fmendes/fmendes
 
 - Open `app.py` and project's folder in VSCode.
 - Open the terminal with *CTRL + Shift + `*
-- Create a Conda environment using Python version 3.11.11.
+- Create a Conda environment using Python version 3.11: ` conda create -n env_name python=3.11`.
 - Activate the Conda environment: `conda activate env_name`.
 - Install required packages from the requirements.txt file:
     - `cd path_to_project_folder`
     - `pip install -r requirements.txt`
 - In the terminal, run the command: `streamlit run app.py`.
-- Save code using *Ctrl + S*
 
 ## Running the Application (Streamlit Community Cloud)
 
@@ -105,7 +107,7 @@ The data comes from the [Kaggle](https://www.kaggle.com/datasets/fmendes/fmendes
 | MAE        | 6.702942  | 14.464262 |
 | R²         | 0.977285  | 0.917716  |
 
-- Reviewed residual scatter plots and histograms.
+- Residual scatter plots and histograms were analyzed to assess model assumptions.
 
 ### 6. Model Saving and Deployment
 
@@ -116,17 +118,37 @@ The data comes from the [Kaggle](https://www.kaggle.com/datasets/fmendes/fmendes
 
 ### For more details click [here](cals.ipynb).
 
+## How to Use the App
+
+- Run the app.
+
+![first_look](images/first_look.png)
+
+- Enter your parameters and click the `Predict` button.
+
+![predicted](images/predicted.png)
+
 ## Conclusions
 
 - Workout duration had the greatest impact on calories burned.
 - The female model achieved better accuracy (lower MAE and higher R²) due to less data variance (based on the dataset used).
 - Results may be different from real life due to the nature of the phenomenon (e.g., lack of information about participants fitness level or muscle mass).
-- The residuals form a U-shape, indicating non-linearity in the data. The model underestimates results at low and high input values.
+- The U-shaped pattern of residuals suggests non-linearity in the data, meaning that the linear model systematically underestimates calorie burn at both low and high input values. 
 - The residual histogram deviates from normality, suggesting greater error variance.
-- The negative coefficient for `Body_Temp` is due to multicollinearity—this variable is highly correlated with other independent features. Since they carry similar information, the regression model assigns an illogical negative influence to one of them (calories burned decreasing as body temperature rises).
+- The negative coefficient for `Body_Temp` is due to multicollinearity—this variable is highly correlated with other independent features. Since they carry similar information, the regression model assigns a counterintuitive negative influence to one of them (calories burned decreasing as body temperature rises).
 
 ## Possible Improvements
 
 - Use a more advanced regression model that handles non-linear relationships better.
 - Apply cross-validation.
-- Use more precise and comprehensive data.
+- Incorporate additional features such as fitness level, muscle mass, or training history to improve prediction accuracy.
+
+## Requirements
+
+- `numpy`
+- `pandas`
+- `streamlit`
+- `seaborn`
+- `matplotlib`
+- `joblib`
+- `scikit-learn`

@@ -21,8 +21,8 @@ except FileNotFoundError:
     st.stop()
 
 
-st.title('Calorie Burn Approximator:running:')
-st.header('Provide the required parameters')
+st.title('Calorie Burn Approximator')
+st.header('Provide the Required Parameters')
 
 # Memory of calories burned
 if "total_males" not in st.session_state:
@@ -39,19 +39,19 @@ c0, c1 = st.columns(2, border=True)
 
 # Gender selection
 with c0:
-    gender = st.selectbox('Gender:', ['Female', 'Male'])
+    gender = st.selectbox('Gender', ['Female', 'Male'])
 
 # Entering the running time
 with c1:
     if gender == 'Female':
         duration = st.number_input(
-            'Estimated running time',
+            'Estimated Running Time',
             help='Estimated running time in minutes',
             step=1,
             min_value=MIN_DURATION)
     else:
         duration = st.number_input(
-            'Estimated running time',
+            'Estimated Running Time',
             help='Estimated running time in minutes',
             step=1,
             min_value=MIN_DURATION)
@@ -62,13 +62,13 @@ c0, c1 = st.columns(2, border=True)
 with c0:
     if gender == 'Female':
             heart_rate = st.number_input(
-            'Estimated heart rate',
+            'Estimated Heart Rate',
             help='Estimated number of beats per minute while running',
             step=1,
             min_value=MIN_HEART_RATE)
     else:
         heart_rate = st.number_input(
-            'Estimated heart rate',
+            'Estimated Heart Rate',
             help='Estimated number of beats per minute while running',
             step=1,
             min_value=MIN_HEART_RATE)
@@ -77,14 +77,14 @@ with c0:
 with c1:
     if gender == 'Female':
             body_temp = st.number_input(
-            'Estimated body temperature',
+            'Estimated Body Temperature',
             min_value=MIN_BODY_TEMP,
             format='%.1f',
             step=0.1,
             help='Estimated body temperature while running')
     else:
         body_temp = st.number_input(
-            'Estimated body temperature',
+            'Estimated Body Temperature',
             min_value=MIN_BODY_TEMP,
             format='%.1f',
             step=0.1,
@@ -94,7 +94,7 @@ with c1:
 input_data = np.array([duration, heart_rate, body_temp]).reshape(1, 3)
 
 # Predicting values
-if st.button('Estimate burned calories', use_container_width=True):
+if st.button('Predict', use_container_width=True):
     if gender == 'Female':
         calories = females.predict(input_data)
         st.header(f'Current session: {int(calories)} burned calories :fire:')
